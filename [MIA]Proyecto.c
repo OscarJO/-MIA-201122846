@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main()
 {
@@ -17,18 +18,22 @@ int main()
     {
         printf("Ingrese el comando: \n");
         //char linea[256];
-        fgets(linea, 256, stdin);
+        fgets(linea, sizeof(linea), stdin);
         printf("linea: %s", linea);
         char buffer[1024];
-        int rv = sprintf(buffer, linea);
+        //int rv = sprintf(buffer, linea);
+        strcpy(buffer, linea);
         //printf("bufer: %s", buffer);
         char *token = strtok(buffer, " ");
+        //printf("primer token: %s\n", &token);
         //printf("token: %c", token);
         //token = strtok(NULL, " ");
-        while(token)
+        while(token != NULL)
         {
-            printf("token: %s", &token);
+
+            printf("token: %s", token);
             token = strtok(NULL, " ");
+
         }
     }
     while(linea != NULL);
