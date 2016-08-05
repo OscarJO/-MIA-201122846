@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 
+
 int main()
 {
     printf("Universidad de San Carlos de Guatemala.\n");
@@ -16,14 +17,14 @@ int main()
     char comando[15][256];
     //char *token;
     printf("\n\n\n");
-    do
+    while(linea != "salida")
     {
         int i = 0;
         int con = 0;
         printf("Ingrese el comando: \n");
         //char linea[256];
         fgets(linea, sizeof(linea), stdin);
-        //printf("linea: %s", linea);
+        printf("linea: %s", linea);
         char buffer[1024];
         //int rv = sprintf(buffer, linea);
         strcpy(buffer, linea);
@@ -32,22 +33,60 @@ int main()
             buffer[i] = tolower(buffer[i]);
             i++;
         }
-        //printf("bufer: %s", buffer);
+
         char *token = strtok(buffer, " ");
-        //printf("primer token: %s\n", &token);
-        //printf("token: %c", token);
-        //token = strtok(NULL, " ");
+
         while(token != NULL)
         {
-
             printf("token: %s", token);
             strcpy(&comando[con], token);
             con++;
             token = strtok(NULL, " ");
+            //printf("termino tokens");
         }
-        //printf("primer token: %s", comando[1]);
+
+        //printf("llego antes de la comparación\n");
+        printf("primer token: %s\n", comando[0]);
+        char primero[25];
+        char subcom1[3][50];
+        strcpy(primero, comando[0]);
+
+        if(strcmp(primero, "mkdisk") == 0)
+        {
+            //printf("entro al if\n");
+            printf("crear un nuevo disco\n");
+            char segundo[50];
+            char buffer2[50];
+            int con2;
+            strcpy(buffer2, comando[1]);
+            printf("buffer: %s", buffer2);
+            char *tok2 = strtok(buffer2, "::");
+            while(tok2 != NULL)
+            {
+                strcpy(&subcom1[con2], tok2);
+                con2++;
+                tok2 = strtok(NULL, " ");
+                strcpy(segundo, subcom1[0]);
+
+            }
+            if(strcmp(segundo, "-size") == 0)
+            {
+                printf("tamaño de disco");
+            }
+            else
+            {
+                printf("nada de size");
+            }
+
+        }
+        else
+        {
+            printf("nada");
+        }
+
+        //printf("despues del if\n");
+
     }
-    while(linea != "salir");
     printf("Saliendo del sistema!");
     return 0;
 }
