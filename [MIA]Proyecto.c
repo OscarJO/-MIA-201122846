@@ -51,6 +51,11 @@ int main()
         char subcom1[3][50];
         strcpy(primero, comando[0]);
 
+
+        int size;
+        char path[100];
+        char unit[1];
+        char nombre[50];
         if(strcmp(primero, "mkdisk") == 0)
         {
             //printf("entro al if\n");
@@ -58,6 +63,7 @@ int main()
             char segundo[50];
             char buffer2[50];
             int con2;
+
             strcpy(buffer2, comando[1]);
             printf("buffer: %s", buffer2);
             char *tok2 = strtok(buffer2, "::");
@@ -72,10 +78,24 @@ int main()
             if(strcmp(segundo, "-size") == 0)
             {
                 printf("tamaño de disco");
+                size = atoi(subcom1[2]);
+                printf("size es igual %s", subcom1[1]);
+            }
+            else if(strcmp(segundo, "+unit") == 0)
+            {
+                printf("unidad de tamaño");
+            }
+            else if(strcmp(segundo, "-path") == 0)
+            {
+                printf("direccion de disco");
+            }
+            else if(strcmp(segundo, "-name") == 0)
+            {
+                printf("nombre disco");
             }
             else
             {
-                printf("nada de size");
+                printf("nada mas");
             }
 
         }
